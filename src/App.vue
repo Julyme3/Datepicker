@@ -18,7 +18,7 @@ export default Vue.extend({
 
 <style lang="less">
 #app {
-  font-family: system, -apple-system, BlinkMacSystemFont,'Segoe UI','Segoe WP', Roboto, sans-serif;
+  font-family: system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe WP', Roboto, sans-serif;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;

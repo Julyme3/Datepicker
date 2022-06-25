@@ -2,10 +2,12 @@
   <div class="datepicker">
     <div class="datepicker-container">
       <form id="datepicker-form">
-        <label for="date" class="datepicker-label">Select the date
+        <label for="date" class="datepicker-label">
+          Select the date
           <input type="text" id="date" class="datepicker-input" />
         </label>
         <button class="datepicker-submit">submit</button>
+        <ControlDate />
       </form>
     </div>
   </div>
@@ -13,14 +15,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import ControlDate from '@/components/ControlDate.vue';
 
 export default Vue.extend({
   name: 'DatePicker',
+  components: {
+    ControlDate,
+  },
 });
 </script>
 
 <style scoped lang="less">
-
 .datepicker {
   &-container {
     width: 50%;
@@ -28,7 +33,7 @@ export default Vue.extend({
     padding: 10px;
     width: 50%;
     border-radius: 3px;
-    box-shadow: 0 2px 8px rgba(0,0,0, 0.26);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     text-align: left;
   }
 
@@ -53,9 +58,9 @@ export default Vue.extend({
   &-submit {
     border: none;
     border-radius: 3px;
-    background-color: #38ACEC;
+    background-color: #38acec;
     padding: 10px 14px;
-    color: #FEFCFF;
+    color: #fefcff;
     font-weight: bold;
     text-transform: capitalize;
     cursor: pointer;
