@@ -39,11 +39,6 @@ export default Vue.extend({
 
 <style scoped lang="less">
 .control {
-  padding: 5px;
-  width: 50%;
-  box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 3px;
   &-header-inner {
     display: flex;
     justify-content: space-between;

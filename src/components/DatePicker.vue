@@ -7,7 +7,11 @@
           <input type="text" id="date" class="datepicker-input" />
         </label>
         <button class="datepicker-submit">submit</button>
-        <ControlDate />
+
+        <div class="datepicker-list">
+          <ControlDate />
+          <CalendarBody />
+        </div>
       </form>
     </div>
   </div>
@@ -16,11 +20,13 @@
 <script lang="ts">
 import Vue from 'vue';
 import ControlDate from '@/components/ControlDate.vue';
+import CalendarBody from '@/components/CalendarBody.vue';
 
 export default Vue.extend({
   name: 'DatePicker',
   components: {
     ControlDate,
+    CalendarBody,
   },
 });
 </script>
@@ -64,6 +70,15 @@ export default Vue.extend({
     font-weight: bold;
     text-transform: capitalize;
     cursor: pointer;
+  }
+
+  //TODO: &-list Вынести в отдельный компонент
+  &-list {
+    padding: 5px;
+    width: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 3px;
   }
 }
 </style>
