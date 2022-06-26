@@ -1,7 +1,7 @@
 <template>
   <div class="calendar-body calendar-body-days-row">
-    <button class="calendar-body-days-unit">1</button>
-    <button class="calendar-body-days-unit">2</button>
+    <button type="button" class="calendar-body-days-unit">1</button>
+    <button type="button" class="calendar-body-days-unit">2</button>
     <button class="calendar-body-days-unit">3</button>
     <button class="calendar-body-days-unit">4</button>
     <button class="calendar-body-days-unit">5</button>
@@ -34,6 +34,9 @@ export default Vue.extend({
   }
 
   &-days-unit {
+    font-family: system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe WP', Roboto,
+      sans-serif;
+    font-size: 16px;
     flex-basis: calc(100% / 7);
     padding: 2px;
     box-sizing: border-box;

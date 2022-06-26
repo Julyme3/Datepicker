@@ -1,17 +1,25 @@
 <template>
   <div class="datepicker">
-    <div class="datepicker-container">
+    <div class="datepicker-container" @click="onDatePickerClick" @keypress="onDatePickerClick">
       <form id="datepicker-form">
-        <label for="date" class="datepicker-label">
-          Select the date
-          <input type="text" id="date" class="datepicker-input" />
-        </label>
-        <button class="datepicker-submit">submit</button>
-
-        <div class="datepicker-list">
-          <ControlDate />
-          <CalendarBody />
+        <div class="datepicker-group">
+          <label for="date" class="datepicker-label">
+            Select the date
+            <input
+              type="text"
+              id="date"
+              class="datepicker-input"
+              @focus="onInputFocus"
+              @click.stop="onInputFocus"
+            />
+          </label>
+          <div class="datepicker-list" :class="{ shown }" @click.stop>
+            <ControlDate />
+            <CalendarBody />
+          </div>
         </div>
+
+        <button class="datepicker-submit">submit</button>
       </form>
     </div>
   </div>
@@ -28,6 +36,20 @@ export default Vue.extend({
     ControlDate,
     CalendarBody,
   },
+  data() {
+    return {
+      shown: false,
+    };
+  },
+
+  methods: {
+    onInputFocus(): void {
+      this.shown = true;
+    },
+    onDatePickerClick(): void {
+      this.shown = false;
+    },
+  },
 });
 </script>
 
@@ -37,10 +59,11 @@ export default Vue.extend({
     width: 50%;
     margin: 50px auto;
     padding: 10px;
-    width: 50%;
+    width: 80%;
     border-radius: 3px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     text-align: left;
+    max-width: 600px;
   }
 
   &-label {
@@ -74,11 +97,23 @@ export default Vue.extend({
 
   //TODO: &-list Вынести в отдельный компонент
   &-list {
+    display: none;
+    position: absolute;
+    top: 50px;
     padding: 5px;
     width: 50%;
     box-sizing: border-box;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 3px;
+    background-color: #fefcff;
+
+    &.shown {
+      display: block;
+    }
+  }
+
+  &-group {
+    position: relative;
   }
 }
 </style>
