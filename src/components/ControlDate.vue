@@ -9,9 +9,7 @@
           <option value="March">March</option>
         </select>
         <select id="year-select" class="control-select control-year-select">
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
+          <option v-for="(option, i) in getListYears" :key="i" :value="option">{{ option }}</option>
         </select>
       </div>
       <button class="control-btn control-btn-prev" type="button">&gt;</button>
@@ -34,6 +32,23 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'ControlDate',
+  props: {
+    fromYear: {
+      type: Number,
+      default: 1900,
+      required: false,
+    },
+    endYear: {
+      type: Number,
+      default: new Date().getFullYear() + 50, // 99 возможно вынести параметром
+      required: false,
+    },
+  },
+  computed: {
+    getListYears(): number[] {
+      return Array.from({ length: this.endYear - this.fromYear }, (_, i) => this.fromYear + i);
+    },
+  },
 });
 </script>
 
