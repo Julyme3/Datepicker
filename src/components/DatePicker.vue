@@ -13,10 +13,7 @@
               @click.stop="onInputFocus"
             />
           </label>
-          <div class="datepicker-list" :class="{ shown }" @click.stop>
-            <ControlDate />
-            <CalendarBody />
-          </div>
+          <DatepickerBody v-if="isShown" />
         </div>
 
         <button class="datepicker-submit">submit</button>
@@ -27,41 +24,46 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import ControlDate from '@/components/ControlDate.vue';
-import CalendarBody from '@/components/CalendarBody.vue';
+import DatepickerBody from '@/components/DatepickerBody.vue';
 
 export default Vue.extend({
   name: 'DatePicker',
   components: {
-    ControlDate,
-    CalendarBody,
+    DatepickerBody,
   },
   data() {
     return {
-      shown: false,
+      isShown: false,
     };
   },
 
   methods: {
     onInputFocus(): void {
-      this.shown = true;
+      this.isShown = true;
     },
     onDatePickerClick(): void {
-      this.shown = false;
+      this.isShown = false;
     },
   },
 });
 </script>
 
+<style lang="less">
+@import '../styles/main.less';
+</style>
+
 <style scoped lang="less">
+@import '../styles/variables.less';
+@import '../styles/mixins.less';
+
 .datepicker {
   &-container {
     width: 50%;
     margin: 50px auto;
-    padding: 10px;
+    padding: 30px;
     width: 80%;
-    border-radius: 3px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: @border-radius-medium;
+    box-shadow: @box-shadow-grey;
     text-align: left;
     max-width: 600px;
   }
@@ -76,39 +78,27 @@ export default Vue.extend({
 
   &-input {
     width: 100%;
-    height: 24px;
+    height: 30px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 3px;
+    border-radius: @border-radius-medium;
     padding: 2px;
     margin-top: 4px;
   }
 
   &-submit {
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     background-color: #38acec;
     padding: 10px 14px;
     color: #fefcff;
     font-weight: bold;
     text-transform: capitalize;
     cursor: pointer;
-  }
+    .transition(background-color, 0.2s, ease-in);
 
-  //TODO: &-list Вынести в отдельный компонент
-  &-list {
-    display: none;
-    position: absolute;
-    top: 50px;
-    padding: 5px;
-    width: 50%;
-    box-sizing: border-box;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 3px;
-    background-color: #fefcff;
-
-    &.shown {
-      display: block;
+    &:hover {
+      background-color: #3fc2d9;
     }
   }
 

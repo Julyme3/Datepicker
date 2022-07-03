@@ -33,7 +33,7 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'ControlDate',
   props: {
-    fromYear: {
+    startYear: {
       type: Number,
       default: 1900,
       required: false,
@@ -46,7 +46,7 @@ export default Vue.extend({
   },
   computed: {
     getListYears(): number[] {
-      return Array.from({ length: this.endYear - this.fromYear }, (_, i) => this.fromYear + i);
+      return Array.from({ length: this.endYear - this.startYear }, (_, i) => this.startYear + i);
     },
   },
 });
